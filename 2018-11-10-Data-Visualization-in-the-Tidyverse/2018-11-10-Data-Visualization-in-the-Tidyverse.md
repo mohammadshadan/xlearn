@@ -14,28 +14,90 @@ You can follow her on twitter at https://twitter.com/apreshill
 My main objective is to reproduce the content from her [presentation](https://alison.netlify.com/uo-tidy-bakeoff) as the visualization is awesome.
 
 
-```{r}
+
+```r
 suppressWarnings(library(tidyverse)) 
+```
+
+```
+## -- Attaching packages ------------------------------------------------------------------------------- tidyverse 1.2.1 --
+```
+
+```
+## v ggplot2 3.0.0     v purrr   0.2.5
+## v tibble  1.4.2     v dplyr   0.7.6
+## v tidyr   0.8.1     v stringr 1.3.1
+## v readr   1.1.1     v forcats 0.3.0
+```
+
+```
+## -- Conflicts ---------------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+```
+
+```r
 #library(backoff) #I am not using this
 ```
 
-```{r}
+
+```r
 data_url = "https://raw.githubusercontent.com/apreshill/bakeoff/master/data-raw/ratings_seasons.csv"
 ratings_seasons = read.csv(data_url, stringsAsFactors = FALSE)
 # write.csv(ratings_seasons,"ratings_seasons.csv", row.names = FALSE)
 head(ratings_seasons)
 ```
 
+```
+##   series episode uk_airdate viewers_7day viewers_28day network_rank
+## 1      1       1 2010-08-17         2.24             7           NA
+## 2      1       2 2010-08-24         3.00             3           NA
+## 3      1       3 2010-08-31         3.00             2           NA
+## 4      1       4 2010-09-07         2.60             4           NA
+## 5      1       5 2010-09-14         3.03             1           NA
+## 6      1       6 2010-09-21         2.75             1           NA
+##   channels_rank bbc_iplayer_requests us_season us_airdate
+## 1            NA                   NA        NA       <NA>
+## 2            NA                   NA        NA       <NA>
+## 3            NA                   NA        NA       <NA>
+## 4            NA                   NA        NA       <NA>
+## 5            NA                   NA        NA       <NA>
+## 6            NA                   NA        NA       <NA>
+```
 
-```{r}
+
+
+```r
 ratings <- ratings_seasons %>% 
   mutate(series = as.factor(series))
+```
 
+```
+## Warning: package 'bindrcpp' was built under R version 3.4.4
+```
+
+```r
 glimpse(ratings)
 ```
 
+```
+## Observations: 74
+## Variables: 10
+## $ series               <fct> 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2,...
+## $ episode              <int> 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 7, 8,...
+## $ uk_airdate           <chr> "2010-08-17", "2010-08-24", "2010-08-31",...
+## $ viewers_7day         <dbl> 2.24, 3.00, 3.00, 2.60, 3.03, 2.75, 3.10,...
+## $ viewers_28day        <dbl> 7, 3, 2, 4, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1,...
+## $ network_rank         <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ channels_rank        <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ bbc_iplayer_requests <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ us_season            <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ us_airdate           <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+```
+
 ### Recipe 1: Continuous Bar Chart
-```{r,echo=TRUE}
+
+```r
 # create continuous episode count
 plot_off1 <- ratings %>% 
   mutate(ep_id = row_number()) %>%
@@ -65,10 +127,13 @@ ggplot(plot_off1, aes(x = ep_id, y = viewers_7day, fill = series)) +
   scale_x_continuous(expand = c(0, 0))
 ```
 
+![](2018-11-10-Data-Visualization-in-the-Tidyverse_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+
 
 ### Recipe 2: Code for Lollipop Plot
 
-```{r}
+
+```r
 plot_off2 <- ratings %>% 
   group_by(series) %>%
   mutate(series_avg = mean(viewers_7day, na.rm = TRUE),
@@ -89,11 +154,14 @@ ggplot(plot_off2, aes(x = episode, y = viewers_7day, color = diff_avg)) +
           subtitle = "Way Higher than Series Average (for Series with 10 episodes)")
 ```
 
+![](2018-11-10-Data-Visualization-in-the-Tidyverse_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+
 Try commenting `scale_color_viridis_c` and running the code to see the difference in colours
 
 ### Recipe 3: Series Line Plot
 
-```{r}
+
+```r
 line_labels <- ratings %>% 
   group_by(series) %>% 
   filter(episode == max(episode)) %>% 
@@ -112,9 +180,12 @@ ggplot(ratings, aes(x = as.factor(episode),
                                       y = y_position))
 ```
 
+![](2018-11-10-Data-Visualization-in-the-Tidyverse_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+
 ### Recipe 4: Facetted Line Plot
 
-```{r}
+
+```r
 ggplot(ratings, aes(x = as.factor(episode),
                     y = viewers_7day,
                     color = fct_reorder2(series, episode, viewers_7day),
@@ -126,9 +197,12 @@ ggplot(ratings, aes(x = as.factor(episode),
   labs(color = "Series", x = "Episode")
 ```
 
+![](2018-11-10-Data-Visualization-in-the-Tidyverse_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+
 ### Recipe 5: First vs. Last
 
-```{r}
+
+```r
 # some wrangling here
 plot_off5 <- ratings %>% 
   select(series, episode, viewers_7day) %>% 
@@ -149,9 +223,12 @@ ggplot(plot_off5, aes(x = series,
   labs(color = "Episode")
 ```
 
+![](2018-11-10-Data-Visualization-in-the-Tidyverse_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
+
 ### Recipe 6: Dumbbell Plot
 
-```{r}
+
+```r
 ggplot(plot_off5, aes(x = viewers_7day,
                       y = fct_rev(series),
                       color = episode,
@@ -162,12 +239,14 @@ ggplot(plot_off5, aes(x = viewers_7day,
   theme_minimal() +
   labs(y = "Series", x = "Viewers (millions)", color = "Episode") +
   ggtitle("Great British Bake Off Finales Get More Viewers than Premieres")
-
 ```
+
+![](2018-11-10-Data-Visualization-in-the-Tidyverse_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
 
 ### Recipe 7: Slope Graph
 
-```{r}
+
+```r
 slope_labels <- plot_off5 %>% 
   filter(episode == "last") %>% 
   select(series, x_position = episode, y_position = viewers_7day)
@@ -187,9 +266,12 @@ ggplot(plot_off5, aes(x = episode,
   theme(panel.grid = element_blank(),
         axis.line = element_line(color = "gray"))
 ```
+
+![](2018-11-10-Data-Visualization-in-the-Tidyverse_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
 ### Recipe 8: Finale "Bumps"
 
-```{r}
+
+```r
 # some more serious wrangling here
 plot_off8 <- ratings %>% 
   select(series, episode, viewers_7day) %>% 
@@ -211,9 +293,12 @@ ggplot(plot_off8, aes(x = fct_rev(series),
   theme_minimal()
 ```
 
+![](2018-11-10-Data-Visualization-in-the-Tidyverse_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
+
 ### Recipe 9: Code for % Bar
 
-```{r}
+
+```r
 # wrangling to calculate percent change
 plot_off9 <- ratings %>% 
   select(series, episode, viewers_7day) %>% 
@@ -238,10 +323,13 @@ ggplot(plot_off9, aes(x = fct_rev(series),
   coord_flip()
 ```
 
+![](2018-11-10-Data-Visualization-in-the-Tidyverse_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
+
 
 ### Recipe 10: Lollipop Plot, % Change
 
-```{r}
+
+```r
 # plot
 ggplot(plot_off9, aes(x = fct_rev(series),
                       y = pct_change)) +
@@ -255,9 +343,12 @@ ggplot(plot_off9, aes(x = fct_rev(series),
   coord_flip()
 ```
 
+![](2018-11-10-Data-Visualization-in-the-Tidyverse_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
+
 ### Recipe 11: Scatterplot
 
-```{r}
+
+```r
 ggplot(plot_off8, aes(x = first, y = last)) +
   geom_point() +
   geom_smooth(se = FALSE, color = '#EBBFDD') +
@@ -267,12 +358,18 @@ ggplot(plot_off8, aes(x = first, y = last)) +
        y = "Finale Episode 7-day Viewers (millions)") +
   coord_equal(ratio=1) +
   theme_minimal()
+```
 
 ```
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+```
+
+![](2018-11-10-Data-Visualization-in-the-Tidyverse_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
 
 #### Recipe 11.1: Pop-Out Scatterplot
 
-```{r}
+
+```r
 ggplot(plot_off8, aes(x = first, y = last)) +
   geom_abline(slope = 1, intercept = 0, color = "gray", alpha = .5) +
   geom_smooth(se = FALSE, color = "#11B2E8") +
@@ -286,4 +383,10 @@ ggplot(plot_off8, aes(x = first, y = last)) +
        y = "Finale Episode 7-day Viewers (millions)") +
   theme_minimal()
 ```
+
+```
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+```
+
+![](2018-11-10-Data-Visualization-in-the-Tidyverse_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
 
