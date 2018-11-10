@@ -1,5 +1,6 @@
 ---
-title: "R Notebook"
+title: "Data Visualization in the Tidyverse
+The Great Tidy Plot Off"
 output:
   html_notebook:
     toc: yes
@@ -10,8 +11,8 @@ editor_options:
   chunk_output_type: inline
 ---
 
-This is just a recreation of the presentation by Alison Presmanes Hill.
-You can find the peresentation here and can follow her on twitter at https://twitter.com/apreshill
+This is just a recreation of the presentation by **Alison Presmanes Hill**.
+You can follow her on twitter at https://twitter.com/apreshill
 
 My main objective is to reproduce the content from her [presentation](https://alison.netlify.com/uo-tidy-bakeoff) as the visualization is awesome.
 
