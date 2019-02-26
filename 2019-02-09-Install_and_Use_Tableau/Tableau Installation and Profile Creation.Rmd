@@ -1,0 +1,13 @@
+---
+title: "Install Tableau Public and Create Profile"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Link:
+
+ - [Download Tableau Public](https://public.tableau.com/en-us/s/download)
+ - Create a Profile Tableau Public Website
