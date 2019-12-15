@@ -1,0 +1,5 @@
+https://towardsdatascience.com/installing-keras-tensorflow-using-anaconda-for-machine-learning-44ab28ff39cb
+
+https://machinelearningmastery.com/handwritten-digit-recognition-using-convolutional-neural-networks-python-keras/
+
+https://www.kaggle.com/adityaecdrid/mnist-with-keras-for-beginners-99457
