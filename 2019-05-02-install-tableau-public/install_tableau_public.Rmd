@@ -1,0 +1,23 @@
+---
+title: "How to Install and Use Tableau Public"
+output: html_document
+---
+
+Tableau Public is free version of Tableau Desktop
+
+### Step 1 : Download and Install Tableau Public Software (using executable file)
+
+ - Go To: https://public.tableau.com/en-us/s/download
+
+ - Or, search for "Download Tableau Public"
+
+
+### Step 2 : Create a Profile on Tableau Public Website
+
+#### Why create a profile on Tableau Public ?
+
+ - One limitation of Tableau Public is that you can't save Tableau Workbook locally
+ - Save and store your visualizations on your Tableau Public profile. They give you 10GB of space. 
+
+Just make sure you are not sharing sensitive or confidential data
+

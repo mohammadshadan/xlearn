@@ -1,0 +1,14 @@
+https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/
+
+1. Megre two or more consecutive cells
+Shift + M
+If you are at a particular cell and press "Shift + M". It will merge with the next cell
+If you select multiple consecutive cells using shift key and then press "Shift + M", all the cells will be merged
+
+2. Delete a cell in Jupyter Notebook "Esc + DD (D two times)"
+
+3. Add a cell below a cell "Esc + B". B means Below
+
+4. Add a cell above a cell "Esc + A". A means Above
+
+5. Convert a cell to Markdown: "Esc + M"

@@ -1,0 +1,59 @@
+---
+title: "How to install packages in R ?"
+output: html_document
+---
+
+### Option 1: Using Code
+
+#### Install the package
+ - `install.packages("package_name")`
+
+ - package name should be in quotes (single or double)
+
+For Example:
+```{r eval=FALSE, include=TRUE}
+#Install ggplot2 package
+install.packages("ggplot2")
+
+#Install tidyr package
+install.packages("tidyr")
+```
+
+#### Load the package
+
+ - Once the packages are installed, we need to load the packages using the `library(package_name)` command
+ - while loading package name should not be in quote
+
+```{r eval=FALSE, include=TRUE}
+#Load ggplot2 package
+library(ggplot2)
+
+#Load tidyr package
+library(tidyr)
+```
+
+### Option 2 : Using UI in RStudio/R
+
+#### Install the package
+
+1. Go to Pane : `Files, Plots, Packages, Help, Viewer` Pane which is at Bottom Right in Rstudio
+2. Click on Tab : `Packages`
+3. Click on `Install`
+4. Type the package name which you would like to install
+
+For Example:
+
+ - try installing package named `leaflet`
+ - try installing package name `NHANES`
+ 
+#### Load the package
+
+1. Go to Pane : `Files, Plots, Packages, Help, Viewer` Pane which is at Bottom Right in Rstudio
+2. Click on Tab : `Packages`
+3. Either scroll to look for Package Name or type the package name in search bar
+4. Tick/Check on the Check Box (This load the package)
+
+For Example:
+
+ - try loading package  `leaflet`
+ - try loading name `NHANES`

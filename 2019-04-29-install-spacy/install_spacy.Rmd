@@ -1,0 +1,25 @@
+---
+title: "Install spacy in anaconda python "
+output: html_document
+---
+
+spaCy is a free open-source library for Natural Language Processing in Python
+
+### Step 1 : Install spacy
+
+Run the below command in Anaconda Prompt (Run as administrator)
+
+`conda install -c conda-forge spacy`
+<!-- ```{python} -->
+<!-- conda install spacy -->
+<!-- ``` -->
+
+### Step 2 : Install language model
+
+<!-- ```{python} -->
+<!-- python -m spacy download en              # default English model (~50MB) -->
+<!-- python -m spacy download en_core_web_md  # larger English model (~1GB) -->
+<!-- ``` -->
+`python -m spacy download en`             # default English model (~50MB)
+
+`python -m spacy download en_core_web_md`  # larger English model (~1GB)

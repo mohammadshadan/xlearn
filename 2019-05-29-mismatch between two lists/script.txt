@@ -1,0 +1,13 @@
+A = ["a", "b", "c","d","e"]
+A = ["c","d","e","a", "b"]
+B = ["d","e", "f", "g"]
+
+set(A).intersection(set(B))
+
+set(A).difference(set(B))
+
+A_s = pd.Series(A)
+B_s = pd.Series(B)
+
+A_s[A_s.isin(B_s)].to_list()
+A_s[~A_s.isin(B_s)].to_list()
