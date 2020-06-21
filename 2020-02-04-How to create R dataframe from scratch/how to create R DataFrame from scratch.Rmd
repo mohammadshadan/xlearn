@@ -1,0 +1,33 @@
+---
+title: "How to create R Dataframe from scratch"
+output:
+  html_document:
+    df_print: paged
+editor_options:
+  chunk_output_type: inline
+---
+
+## How to create R Dataframe from scratch (manually)
+
+
+
+```{r}
+data.frame("element_name"=c("Hydrogen", "Carbon", "Oxygen", "Sodium"),
+           "atomic_symbol"=c("H", "C", "O", "Na"),
+           "atomic_number"=c(1,6,8,11))
+```
+
+```{r}
+data.frame(element_name=c("Hydrogen", "Carbon", "Oxygen", "Sodium"),
+           atomic_symbol=c("H", "C", "O", "Na"),
+           atomic_number=c(1,6,8,11))
+```
+
+## Summary
+ - data.frame("column_name"= c("a", "b", "c"))
+
+
+
+
+
+
