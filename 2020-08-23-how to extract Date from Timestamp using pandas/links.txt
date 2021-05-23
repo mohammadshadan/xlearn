@@ -1,0 +1,13 @@
+https://www.geeksforgeeks.org/python-pandas-series-dt-date/#:~:text=dt%20can%20be%20used%20to,numpy%20array%20of%20python%20datetime.
+
+
+Series.dt can be used to access the values of the series as datetimelike and return several properties. Pandas Series.dt.date attribute return a numpy array of python datetime.date objects.
+
+Syntax: Series.dt.date
+
+Parameter : None
+
+Returns : numpy array
+
+Example #1: Use Series.dt.date attribute to return the date property of the underlying data of the given Series object.
+
