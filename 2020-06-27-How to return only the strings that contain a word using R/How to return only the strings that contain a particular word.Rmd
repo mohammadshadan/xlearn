@@ -1,0 +1,87 @@
+---
+title: "How to return only the strings that contain a particular word"
+author: "Mohammad Shadan, Xperimental Learning"
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
+
+# ============================================================
+# Question:
+# How to return only the strings that contain a particular word
+# using R
+# ============================================================
+
+# ============================================================
+# Scenario
+# ============================================================
+
+```{r}
+strings = c("iron man", "the incredible hulk", "iron man 2", 
+           "thor", "captain america: the first avenger",
+           "marvel's the avengers", "iron man 3", 
+           "thor: the dark world","captain america: the winter soldier", 
+           "guardians of the galaxy")
+
+strings
+```
+
+# ============================================================
+# Expected Output
+# ============================================================
+
+```{r}
+# Return strings having the word "captain"
+```
+
+```{r}
+# Return strings having the word "thor"
+```
+
+# ============================================================
+# Solution
+# ============================================================
+
+```{r}
+# using stringr package
+library(stringr)
+# strings containing the word "captain"
+str_subset(strings, "captain")
+```
+
+```{r}
+pattern = "thor"
+str_subset(strings, pattern)
+```
+
+
+```{r}
+# using Base R
+# "captain"
+grep("captain", strings, value = TRUE)
+
+```
+```{r}
+pattern = "thor"
+grep(pattern, strings, value = TRUE)
+```
+
+
+# ============================================================
+# Summary
+# ============================================================
+
+```{r}
+# Using stringr package
+pattern = "thor"
+str_subset(strings, pattern)
+
+# Using Base R
+grep(pattern, strings, value = TRUE)
+```
+
+# THANK YOU :)
+
+
+
+
