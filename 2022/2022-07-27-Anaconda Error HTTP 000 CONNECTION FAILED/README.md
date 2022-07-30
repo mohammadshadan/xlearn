@@ -7,8 +7,9 @@ here is a detailed youTube video explained this in detail:
 https://www.youtube.com/watch?v=nvPOUdz5PL4
 
 
+D:/Github/xlearn/2022/2022-07-27-Anaconda Error HTTP 000 CONNECTION FAILED/Anaconda Error HTTP Screenshot.JPG
 
-![Screenshot](D:/Github/xlearn/2022/2022-07-27-Anaconda Error HTTP 000 CONNECTION FAILED/Anaconda Error HTTP Screenshot.JPG)
+![Screenshot](/xlearn/2022/2022-07-27-Anaconda Error HTTP 000 CONNECTION FAILED/Anaconda Error HTTP Screenshot.JPG)
 
 
 d = '189:2022'
