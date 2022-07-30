@@ -11,7 +11,7 @@ D:/Github/xlearn/2022/2022-07-27-Anaconda Error HTTP 000 CONNECTION FAILED/Anaco
 
 ![Screenshot](/xlearn/2022/2022-07-27-Anaconda Error HTTP 000 CONNECTION FAILED/Anaconda Error HTTP Screenshot.JPG)
 
-<img src="/xlearn/2022/2022-07-27-Anaconda Error HTTP 000 CONNECTION FAILED/Anaconda Error HTTP Screenshot.JPG">
+<img src="xlearn/2022/2022-07-27-Anaconda Error HTTP 000 CONNECTION FAILED/Anaconda Error HTTP Screenshot.JPG">
 
 
 d = '189:2022'
