@@ -8,4 +8,4 @@ https://www.youtube.com/watch?v=nvPOUdz5PL4
 
 
 
-![Screenshot](Anaconda Error HTTP Screenshot.JPG)
+![Screenshot](/Anaconda Error HTTP Screenshot.JPG)
