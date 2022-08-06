@@ -187,7 +187,9 @@ df = pd.DataFrame({"Start_Date":['2017-01-01', '2017-01-09', '2017-01-23',
 df["Start_Date"] = pd.to_datetime(df["Start_Date"])
 df["Start_Date"].dt.day_name()
 
+df["Start_Date"].dt.month_name()
 
+df["Start_Date"].dt.year
 
 # =============================================================================
 # Pandas Explode
@@ -282,3 +284,22 @@ df.groupby("kind").agg({'height': [('max_height', 'max'), ('min_height', 'min')]
 
 import statistics
 set1 =[1, 2, 3, 3, 4, 4, 4, 5, 5, 6]
+
+
+# How to find the number of days in the month
+
+from calendar import monthrange
+year = 2022 
+month = 2   #choose a month number from 1-12 
+num_of_days = monthrange(2022, 3)[1]
+print(num_of_days)
+help(monthrange)
+
+
+import pandas as pd
+
+month_number = [1,2,3,4,5,6,7,8,9,10]
+pd.to_datetime(month_number, format="%m")
+
+
+strftime

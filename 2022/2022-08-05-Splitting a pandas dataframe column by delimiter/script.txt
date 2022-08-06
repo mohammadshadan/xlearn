@@ -1,0 +1,12 @@
+Script:
+Hi and Welcome, I hope you are good.
+In this video I will talk about How to find the exact date, if you know the Day of Year and Year. 
+
+Now the reason I am making if video is because, sometime back I made a video about How to Extract the Day of Year if we know the date i.e. we what is the day number if we know the year, month and day. 
+I got a comment on the video asking, can we do the vice versa. 
+
+
+
+Scenario
+Expected Output
+Solution

@@ -14,3 +14,5 @@ If you select multiple consecutive cells using shift key and then press "Shift +
 5. Convert a cell to Markdown: "Esc + M"
 
 6. Undo changes "Esc + Z". Check this
+
+7. Convert markdown cell to code cell : "Esc + y"
