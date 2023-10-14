@@ -280,8 +280,61 @@ df.groupby('kind').agg(
 
 df.groupby("kind").agg({'height': [('max_height', 'max'), ('min_height', 'min')]})
 
+import numpy as np
+import pandas as pd
+df = pd.read_csv("D:/Drive/projects/Other Projects/Digital Twin/Sprints/Sprint 5/organised_final_train_v1.csv")
+df =df.dropna(axis=0, subset=["cc_smooth"])
+df_p = df.groupby('cycle_index').agg(
+    soh_mean =('soh_pred_smooth', 'mean'), 
+    soh_std =('soh_pred_smooth', 'std'),
+    temperature_mean=('temperature', 'mean'),
+    temperature_std=('temperature', 'std'),
+    cc_mean=('cc_smooth', 'mean'),
+    cc_std=('cc_smooth', 'std'),
+    voltage_mean=('voltage_smooth', 'mean'),
+    voltage_std=('voltage_smooth', np.nanstd),
+    seg_33_34_mean=('seg_3.2_3.3_smooth', 'std'),
+    battery_count = ('soh_pred_smooth', 'count')
+    ).reset_index()
+
+df_p = df.groupby('cycle_index').agg({
+    'soh_pred_smooth':['mean', 'std'],
+    'voltage': ['mean','std','count']})
 
 
+df_p = df.groupby('cycle_index').agg(
+
+def grouped_df:
+    for col in gropued_df.columns:
+        
+df_p = df.groupby('cycle_index').lambda()
+
+df_p
+df_p = df_population.fillna(0)
+
+df_p["soh_minstd"] = df_p["soh_mean"] - df_p["soh_std"]
+df_p["soh_maxstd"] = df_p["soh_mean"] + df_p["soh_std"]
+
+
+df_p["cc_minstd"] = df_p["cc_mean"] - df_p["cc_std"]
+df_p["cc_maxstd"] = df_p["cc_mean"] + df_p["cc_std"]
+
+df_p["temperature_minstd"] = df_p["temperature_mean"] - df_p["temperature_std"]
+df_p["temperature_maxstd"] = df_p["temperature_mean"] + df_p["temperature_std"]
+
+df_p["voltage_minstd"] = df_p["voltage_mean"] - df_p["voltage_std"]
+df_p["voltage_maxstd"] = df_p["voltage_mean"] + df_p["voltage_std"]
+
+arragned_columns = ["cycle_index", 
+                    "soh_mean", "soh_minstd", "soh_maxstd",
+                    "cc_mean", "cc_minstd", "cc_maxstd",
+                    "voltage_mean", "voltage_minstd", "voltage_maxstd",
+                    "temperature_mean", "temperature_minstd", "temperature_maxstd",
+                    "battery_count"]
+df_p = df_p[arragned_columns]
+
+
+df_population
 import statistics
 set1 =[1, 2, 3, 3, 4, 4, 4, 5, 5, 6]
 
@@ -303,3 +356,128 @@ pd.to_datetime(month_number, format="%m")
 
 
 strftime
+
+import pandas as pd
+
+df = pd.DataFrame({'Name': ['Mark', 'Laura', 'Adam', 'Roger', 'Anna'],
+                   'City': ['Lisbon', 'Montreal', 'Lisbon', 'Berlin', 'Glasgow'],
+                   'Car': ['Tesla', 'Audi', 'Porsche', 'Ford', 'Honda']})
+
+import numpy as np
+df = pd.DataFrame({'col11': np.arange(0,40,2),
+                   'col22': np.arange(0,100,5),
+                   'col33': np.arange(0,120,6),
+                   'cycle_number': np.arange(0,20,1)})
+
+df
+
+dff = df.head(1).iloc[-1]
+
+dff.dropna().iloc[1:-1]
+
+pd.DataFrame(df.head(1).iloc[[-1]])
+
+# =============================================================================
+# Quadratic Data
+# =============================================================================
+import numpy as np
+import matplotlib.pyplot as plt
+
+def generate_quadratic_data(num_points, a, b, c, noise):
+    x = np.linspace(-10, 10, num_points)
+    y = a*x**2 + b*x + c + np.random.normal(scale=noise, size=num_points)
+    return x, y
+
+# Generate quadratic data with a=1, b=2, c=3 and noise=2
+x, y = generate_quadratic_data(100, 1, 2, 3, 2)
+plt.plot(x,y)
+df = pd.DataFrame({"x":x,
+                   "y":y,
+                   "cycle_number":np.arange(len(x))})
+
+df.plot("cycle_number", "y" )
+df.plot("y", "x")
+
+dff = gaussian_filter__(df.head(2),"x", col2, b=4)
+dff
+
+dff_ = pd.DataFrame([dff.smoothed.iloc[-1]]) 
+
+
+# Print the first 5 points
+print(list(zip(x[:5], y[:5])))
+
+
+
+col2= "cycle_number"
+def gaussian_filter__(data,col1,col2,b=120):
+        
+    dff = data[[col1,col2]]
+    #dff = dff.dropna().iloc[1:-1]
+    dff['Time_'] = np.arange(len(dff))
+    smoothed_cases = []
+
+    for date in sorted(dff.Time_):
+        #print(date)
+        dff['gkv'] = np.exp(
+            -((dff['Time_'] - date) ** 2) / (2 * (b ** 2))
+        )
+        # print(np.exp(
+        #     -((dff['Time_'] - date) ** 2) / (2 * (6 ** 2))
+        # ))
+        dff['gkv'] /= dff['gkv'].sum()
+        # print(dff['gkv'])
+        smoothed_cases.append((dff[col1] * dff['gkv']).sum())
+        
+    dff['smoothed'] = smoothed_cases
+    return dff
+
+dff = gaussian_filter__(df.head(10),"col11", col2, b=4)
+dff_ = pd.DataFrame([dff.smoothed.iloc[-1]]) 
+
+dff.reset_index().plot(y=["col11", "smoothed"], x="index")
+
+# When gaussian_filter__ is run the leght of the output reduces by 2
+# If there are 
+
+# =============================================================================
+# 
+# =============================================================================
+
+import numpy as np
+from scipy.ndimage import gaussian_filter1d
+
+def gaussian_filter_timeseries(timeseries, sigma):
+    """
+    Apply Gaussian filtering to a time series.
+
+    Parameters:
+    timeseries (numpy.ndarray): 1D array of the time series data.
+    sigma (float): Standard deviation of the Gaussian kernel.
+
+    Returns:
+    numpy.ndarray: Filtered time series data.
+    """
+    filtered = gaussian_filter1d(timeseries, sigma=sigma)
+    return filtered
+
+
+import matplotlib.pyplot as plt
+
+# Generate a sample time series
+time = np.linspace(0, 10, num=1000)
+data = np.sin(time) + np.random.normal(0, 0.1, size=len(time))
+
+# Apply Gaussian filtering with sigma=5
+filtered_data = gaussian_filter_timeseries(data, sigma=5)
+filtered_data.shape
+
+# Plot the original and filtered data
+fig, ax = plt.subplots()
+ax.plot(time, data, label='Original')
+ax.plot(time, filtered_data, label='Filtered')
+ax.legend()
+plt.show()
+
+
+gaussian_filter_timeseries(data[0:10], sigma=5)
